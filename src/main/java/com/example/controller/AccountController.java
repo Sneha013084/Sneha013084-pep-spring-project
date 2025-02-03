@@ -24,7 +24,7 @@ import com.example.service.AccountService;
  */
 
  @RestController
- @RequestMapping("/register")
+ 
  public class AccountController {
     @Autowired 
     private AccountService accountService;
@@ -36,10 +36,11 @@ import com.example.service.AccountService;
 
         try{
              Account registeredAccount = accountService.registerAccount(account);
-    
-            return new ResponseEntity<>(registeredAccount,HttpStatus.OK);
+         return new ResponseEntity<>(registeredAccount,HttpStatus.OK);
+
     } catch(RuntimeException e){
         return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT); // 409 Conflict - Username Exists
+
     } catch(Exception e){
        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }      

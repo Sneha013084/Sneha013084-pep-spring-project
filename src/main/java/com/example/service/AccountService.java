@@ -7,29 +7,31 @@ import com.example.entity.Account;
 import com.example.repository.AccountRepository;
 
 @Service
-
 public class AccountService  {
-
-      
       @Autowired
       private AccountRepository accountRepository;
       
   
       public Account registerAccount( Account account){
       
-      if (account.getUsername() ==null||account.getUsername().isEmpty()||account.getPassword().length()<4){
-       
-       
-        throw new IllegalArgumentException("Invalid username or password. Password must be at least 4 characters.");
+      if (account.getUsername() ==null||account.getUsername().isEmpty()){
+
+        throw new IllegalArgumentException("Username cannot be blank.");
       }
-        
       
+      if(account.getPassword()==null || account.getPassword().length()<4){
+       
+        throw new IllegalArgumentException("Password must be at least 4 characters long.");
+    
+      }
+        // Check if the username already exists in the database
     
       Optional<Account> existingAccount = accountRepository.findByUsername(account.getUsername());
        if(existingAccount.isPresent()){
         throw new RuntimeException("Username already exists.");
     }
-   
+       // Save the account to the database
+
       return accountRepository.save(account);
   }  
 }
