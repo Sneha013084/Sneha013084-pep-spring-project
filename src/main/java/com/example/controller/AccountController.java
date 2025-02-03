@@ -24,7 +24,7 @@ import com.example.service.AccountService;
  */
 
  @RestController
- @RequestMapping("/api")
+ @RequestMapping("/register")
  public class AccountController {
     @Autowired 
     private AccountService accountService;
