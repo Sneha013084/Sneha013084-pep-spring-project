@@ -33,6 +33,7 @@ public class Message {
      */
     @Column (name="timePostedEpoch")
     private Long timePostedEpoch;
+    public Object getMessageText;
     /**
      * A default, no-args constructor, as well as correctly formatted getters and setters, are needed for
      * Jackson Objectmapper to work.

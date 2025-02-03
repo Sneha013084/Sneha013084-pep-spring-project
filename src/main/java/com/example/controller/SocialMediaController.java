@@ -13,9 +13,7 @@ import com.example.service.MessageService;
 
 
 /**
- * 
- * 
- * 
+
  * 
  * 
  * 
@@ -46,7 +44,7 @@ import com.example.service.MessageService;
     }      
  }   
 
- // login 
+ // login //
   @PostMapping("/login")
 
   public ResponseEntity <?> loginAccount (@RequestBody Account account){
@@ -63,7 +61,7 @@ import com.example.service.MessageService;
   }
 
 
-//Create message
+//Create message //
 
    @Autowired
   private MessageService messageService;

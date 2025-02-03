@@ -14,12 +14,12 @@ public class AccountService  {
   
       public Account registerAccount( Account account){
       
-      if (account.getUsername() ==null||account.getUsername().isEmpty()){
+      if (account.getUsername() == null || account.getUsername().isEmpty()){
 
         throw new IllegalArgumentException("Username cannot be blank.");
       }
       
-      if(account.getPassword()==null || account.getPassword().length()<4){
+      if(account.getPassword() == null || account.getPassword().length()<4){
        
         throw new IllegalArgumentException("Password must be at least 4 characters long.");
     
@@ -34,4 +34,22 @@ public class AccountService  {
 
       return accountRepository.save(account);
   }  
-}
+ 
+    //login
+     
+    public Account loginAccount(Account account){
+
+      Optional <Account>  existingAccount = accountRepository.findByUsername(account.getUsername());
+      if ( existingAccount.isEmpty()){
+        throw new RuntimeException ( "Invalid username or password");
+      }
+
+      Account userAccount = existingAccount.get();
+      if( !userAccount.getPassword().equals(account.getPassword())){
+       
+        throw new RuntimeException ( "Invalid username or password");
+      }
+       return userAccount;
+
+    }
+    }
