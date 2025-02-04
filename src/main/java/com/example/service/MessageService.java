@@ -38,9 +38,9 @@ public Message createMessage( Message message){
 
 //delete messages
 
-public int deleteMessageById(int messageId){
+     public int deleteMessageById(int messageId){
 
-    return messageRepository.deleteById(messageId);
+    return messageRepository.deleteMessageById(messageId);
 
 }
 }

@@ -3,6 +3,7 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;//
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,7 +67,8 @@ import com.example.service.MessageService;
 //Create message //
 
    @Autowired
-  private MessageService messageService;
+  private MessageService messageService ;
+  
 
 @PostMapping ("/messages")
  public ResponseEntity <?> createMessage(@RequestBody Message message){
@@ -81,10 +83,16 @@ import com.example.service.MessageService;
     return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
    }}
 // Delete message
+     
+     @Autowired
+     public SocialMediaController(MessageService messageService) {
+    this.messageService = messageService;
+  }
 
-   @RequestMapping("/messages")
+  //@RequestMapping("/messages")
     
-    @PostMapping("{messageId}")
+    @DeleteMapping("/messa{messageId}")
+
     public ResponseEntity<?> deleteMessage(@PathVariable int messageId){
 
       int rowsDeleted = messageService.deleteMessageById(messageId);
