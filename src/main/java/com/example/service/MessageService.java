@@ -2,7 +2,8 @@ package com.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 import com.example.entity.Account;
 import com.example.entity.Message;
 import com.example.repository.AccountRepository;
@@ -33,7 +34,13 @@ public Message createMessage( Message message){
        return messageRepository.save(message);
 
     }
+
+
+//delete messages
+
+public int deleteMessageById(int messageId){
+
+    return messageRepository.deleteById(messageId);
+
 }
-
-
-
+}

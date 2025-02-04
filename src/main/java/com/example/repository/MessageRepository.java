@@ -7,5 +7,9 @@ import com.example.entity.Message;
 public interface MessageRepository extends JpaRepository< Message, Integer>{
   
     Optional< Message> findByPostedBy(Integer PostedBy);
-}
 
+    int deleteById(int messageId);
+}
+//delete message
+
+  

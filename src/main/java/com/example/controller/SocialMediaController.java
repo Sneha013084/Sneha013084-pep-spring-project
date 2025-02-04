@@ -3,8 +3,10 @@ package com.example.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;//
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.entity.Account;
 import com.example.entity.Message;
@@ -77,10 +79,26 @@ import com.example.service.MessageService;
     return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
    } catch ( Exception e){
     return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-   }
+   }}
+// Delete message
 
+   @RequestMapping("/messages")
+    
+    @PostMapping("{messageId}")
+    public ResponseEntity<?> deleteMessage(@PathVariable int messageId){
+
+      int rowsDeleted = messageService.deleteMessageById(messageId);
+      if(rowsDeleted >0 ){
+        return ResponseEntity.ok(rowsDeleted);
+      }else{
+        return ResponseEntity.ok().build();
+      }
+
+      }
     }
-    }
+
+    
+
 
  
 
