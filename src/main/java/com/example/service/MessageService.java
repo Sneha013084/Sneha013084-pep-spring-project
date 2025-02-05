@@ -8,6 +8,8 @@ import com.example.entity.Account;
 import com.example.entity.Message;
 import com.example.repository.AccountRepository;
 import com.example.repository.MessageRepository;
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -42,5 +44,11 @@ public Message createMessage( Message message){
 
     return messageRepository.deleteMessageById(messageId);
 
+}
+
+//getmessages by accountId
+
+    public Optional<Message> getMessagesByAccountId(int accountId){
+       return messageRepository.findByPostedBy(accountId);
 }
 }

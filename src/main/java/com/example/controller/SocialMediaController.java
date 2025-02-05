@@ -1,9 +1,13 @@
 package com.example.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;//
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -84,24 +88,36 @@ import com.example.service.MessageService;
    }}
 // Delete message
      
-     @Autowired
-     public SocialMediaController(MessageService messageService) {
-    this.messageService = messageService;
-  }
+     //@Autowired
+    // public SocialMediaController(MessageService messageService) {
+    //this.messageService = messageService;
+  
 
   //@RequestMapping("/messages")
     
-    @DeleteMapping("/messa{messageId}")
+    @DeleteMapping("/messages/{messageId}")
 
-    public ResponseEntity<?> deleteMessage(@PathVariable int messageId){
+    public ResponseEntity<?> deleteMessage (@PathVariable int messageId){
 
       int rowsDeleted = messageService.deleteMessageById(messageId);
-      if(rowsDeleted >0 ){
-        return ResponseEntity.ok(rowsDeleted);
+      if(rowsDeleted > 0 ){
+        return ResponseEntity.ok (rowsDeleted);
       }else{
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok ().build();
       }
 
+      }
+
+      //Retrieve messages
+
+      @GetMapping("/accounts/{accountId}/messages")
+
+    public ResponseEntity<List<Message>>getMessagesByAccountId(@PathVariable int accountId){
+
+      Optional<Message>messages = messageService.getMessagesByAccountId(accountId);
+      
+        return ResponseEntity.ok(messages);
+    
       }
     }
 
