@@ -108,20 +108,27 @@ import com.example.service.MessageService;
 
       }
 
-      //Retrieve messages
+      //RetrieveMessagesByAccountId
 
       @GetMapping("/accounts/{accountId}/messages")
 
-    public ResponseEntity<List<Message>>getMessagesByAccountId(@PathVariable int accountId){
+    public ResponseEntity< List<Message>> getMessagesByAccountId(@PathVariable int accountId){
 
-      Optional<Message>messages = messageService.getMessagesByAccountId(accountId);
+      List<Message>messages = messageService.getMessagesByAccountId(accountId);
       
         return ResponseEntity.ok(messages);
     
       }
-    }
-
     
+    //getMessageBymessageId
+
+     @GetMapping("/messages/{messageId}")
+     public ResponseEntity<?>getMessageById (@PathVariable int messageId ){
+
+        Optional<Message>messageOpt = messageService.getMessageById(messageId);
+        return ResponseEntity.ok(messageOpt.orElse(null));
+     }
+    }
 
 
  

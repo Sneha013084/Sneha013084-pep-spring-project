@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository< Message, Integer>{
   
-    Optional< Message> findByPostedBy(Integer PostedBy);
+    List<Message> findByPostedBy(Integer PostedBy);
 
 
     @Transactional
@@ -24,8 +24,11 @@ public interface MessageRepository extends JpaRepository< Message, Integer>{
 
 //getmessagebyid
 
-  // List<Message> findByPostedBy(Integer postedBy);
+    //List<Message> findByPostedBy(Integer postedBy);
+
+// getMessageByMessageId
+
+    Optional<Message>findById (Integer id);
 
 }
-
   

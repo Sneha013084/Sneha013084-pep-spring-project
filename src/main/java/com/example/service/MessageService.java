@@ -48,7 +48,14 @@ public Message createMessage( Message message){
 
 //getmessages by accountId
 
-    public Optional<Message> getMessagesByAccountId(int accountId){
+    public List<Message> getMessagesByAccountId(int accountId){
        return messageRepository.findByPostedBy(accountId);
 }
+
+   //getMessageByMessageId
+
+    public Optional<Message> getMessageById (int messageId){
+
+        return messageRepository.findById(messageId);
+    }
 }
