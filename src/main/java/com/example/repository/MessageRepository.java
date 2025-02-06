@@ -1,5 +1,6 @@
 package com.example.repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +16,6 @@ public interface MessageRepository extends JpaRepository< Message, Integer>{
   
     List<Message> findByPostedBy(Integer PostedBy);
 
-
     @Transactional
     @Modifying (clearAutomatically = true)
     @Query("DELETE FROM Message m WHERE m.messageId = :messageId")
@@ -30,5 +30,13 @@ public interface MessageRepository extends JpaRepository< Message, Integer>{
 
     Optional<Message>findById (Integer id);
 
+
+
+ //updateMessage
+     @Query
+      ("UPDATE Message m SET m.messageText=:messagetext where m.messageId = messageId")
+
+      int updateMessageText (@Param ("messageId") int messageId, @Param("messageText") String messageText);
+
 }
-  
+ 

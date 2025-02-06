@@ -65,4 +65,20 @@ public Message createMessage( Message message){
 
         return messageRepository.findAll();
     }
-}
+
+    // update message
+     
+    public int updateMessageText (int messageId ,String newMessageText){
+
+        if(newMessageText == null|| newMessageText.trim().isEmpty() || newMessageText.length()<255){
+
+            throw new IllegalArgumentException (" Messagetext must be non blank and no longer than 255 characters");
+        }
+            if(!messageRepository.existsById(messageId)){
+                 
+                throw new IllegalArgumentException ("message with id" + messageId+ " doesnot exist");
+            }
+                return messageRepository.updateMessageText(messageId, newMessageText);
+            }
+        }
+    

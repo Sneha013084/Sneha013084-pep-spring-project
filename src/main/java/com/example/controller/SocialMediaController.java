@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;//
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +18,6 @@ import com.example.entity.Account;
 import com.example.entity.Message;
 import com.example.service.AccountService;
 import com.example.service.MessageService;
-
-
 /**
 
  * 
@@ -137,8 +136,21 @@ import com.example.service.MessageService;
            return ResponseEntity.ok (messages);
       }
 
+      
+      @PatchMapping("/messages/{messageId}")
+      public <postMessageRequest> ResponseEntity < ?> updateMessageText (@PathVariable int messageId, @RequestBody postMessageRequest request){
+
+   try {
+          int rowsUpdated = messageService.updateMessageText(messageId, ((Message) request).getMessageText());
+           return ResponseEntity.ok(rowsUpdated);
+      } catch( IllegalArgumentException e){
+            return ResponseEntity.badRequest(). body(e.getMessage());
+      } catch ( Exception e) {
+            return ResponseEntity. badRequest(). body("Update failed" +e.getMessage());
+      }
+      }
     }
- 
+      
 
 
 
