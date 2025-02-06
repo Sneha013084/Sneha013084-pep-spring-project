@@ -58,4 +58,11 @@ public Message createMessage( Message message){
 
         return messageRepository.findById(messageId);
     }
+
+    //getAllMessages
+
+    public List<Message>getAllMessages(){
+
+        return messageRepository.findAll();
+    }
 }

@@ -128,9 +128,16 @@ import com.example.service.MessageService;
         Optional<Message>messageOpt = messageService.getMessageById(messageId);
         return ResponseEntity.ok(messageOpt.orElse(null));
      }
+    
+    //getAllMessages
+
+      @GetMapping("/messages")
+      public ResponseEntity <List<Message>>getAllMessages(){
+        List<Message>messages = messageService.getAllMessages();
+           return ResponseEntity.ok (messages);
+      }
+
     }
-
-
  
 
 
