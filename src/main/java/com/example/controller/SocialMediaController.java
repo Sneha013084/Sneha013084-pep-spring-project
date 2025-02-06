@@ -138,7 +138,7 @@ import com.example.service.MessageService;
 
       
       @PatchMapping("/messages/{messageId}")
-      public <postMessageRequest> ResponseEntity < ?> updateMessageText (@PathVariable int messageId, @RequestBody postMessageRequest request){
+      public ResponseEntity < ?> updateMessageText (@PathVariable int messageId, @RequestBody Message request){
 
    try {
           int rowsUpdated = messageService.updateMessageText(messageId, ((Message) request).getMessageText());

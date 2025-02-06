@@ -70,7 +70,7 @@ public Message createMessage( Message message){
      
     public int updateMessageText (int messageId ,String newMessageText){
 
-        if(newMessageText == null|| newMessageText.trim().isEmpty() || newMessageText.length()<255){
+        if(newMessageText == null|| newMessageText.trim().isEmpty() || newMessageText.length()>255){
 
             throw new IllegalArgumentException (" Messagetext must be non blank and no longer than 255 characters");
         }
