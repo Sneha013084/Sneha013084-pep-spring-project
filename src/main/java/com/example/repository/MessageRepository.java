@@ -33,8 +33,10 @@ public interface MessageRepository extends JpaRepository< Message, Integer>{
 
 
  //updateMessage
-     @Query
-      ("UPDATE Message m SET m.messageText=:messagetext where m.messageId = messageId")
+    @Modifying
+    @Transactional
+    @Query
+      ("UPDATE Message m SET m.messageText=:messageText where m.messageId = :messageId")
 
       int updateMessageText (@Param ("messageId") int messageId, @Param("messageText") String messageText);
 
